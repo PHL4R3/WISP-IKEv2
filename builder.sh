@@ -9,7 +9,7 @@ fi
 apt update
 apt upgrade -y
 #get strongswan from download and unzip
-wget https://download.strongswan.org/strongswam-5.9.0.tar.bz2 
+wget https://download.strongswan.org/strongswan-5.9.0.tar.bz2 
 tar -jxvf strongswan-5.9.0.tar.bz2
 cd strongswan-5.9.0
 #configure strongswan
