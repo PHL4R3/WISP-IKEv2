@@ -11,11 +11,14 @@ cd Sun-Files
 cd Sun
 
 #move files to required spots
-mv swanctl.conf /etc/swanctl/
-mv sunKey.pem /etc/swanctl/private/
-mv sunReq.pem /etc/swanctl/private/
-mv sunCert.pem /etc/swanctl/x509/
-mv sunCACert.pem /etc/swanctl/x509ca/
-mv sunKey.pem /etc/swanctl/x509ca/
+cp swanctl.conf /etc/swanctl/
+cp sunKey.pem /etc/swanctl/private/
+cp sunReq.pem /etc/swanctl/private/
+cp sunCert.pem /etc/swanctl/x509/
+cp sunCACert.pem /etc/swanctl/x509ca/
+cp sunKey.pem /etc/swanctl/x509ca/
 
+#load creds and conns
+swanctl --load-creds
+swanctl --load-conns
 exit 0

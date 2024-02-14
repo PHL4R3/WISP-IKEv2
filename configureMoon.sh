@@ -17,4 +17,8 @@ cp moonCert.pem /etc/swanctl/x509/
 cp moonCACert.pem /etc/swanctl/x509ca/
 cp moonKey.pem /etc/swanctl/x509ca/
 
+#load creds and conns
+swanctl --load-creds
+swanctl --load-conns
+
 exit 0
