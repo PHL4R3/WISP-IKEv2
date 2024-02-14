@@ -8,13 +8,13 @@ fi
 #unzip and move to a better working dir
 unzip Moon-Files
 cd Moon-Files
-cd moon
+cd Moon
 
 #move files to required spots
-mv swanctl.conf /etc/swanctl/
-mv moonKey.pem /etc/swanctl/private/
-mv moonCert.pem /etc/swanctl/x509/
-mv moonCACert.pem /etc/swanctl/x509ca/
-mv moonKey.pem /etc/swanctl/x509ca/
+cp swanctl.conf /etc/swanctl/
+cp moonKey.pem /etc/swanctl/private/
+cp moonCert.pem /etc/swanctl/x509/
+cp moonCACert.pem /etc/swanctl/x509ca/
+cp moonKey.pem /etc/swanctl/x509ca/
 
 exit 0
