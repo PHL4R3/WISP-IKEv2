@@ -20,7 +20,7 @@ apt install libgmp3-dev -y
 #make strongswan
 apt install make
 make
-sudo make install
+make install
 
 exit 0
 
