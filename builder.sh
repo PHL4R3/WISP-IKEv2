@@ -13,7 +13,7 @@ wget https://download.strongswan.org/strongswan-5.9.0.tar.bz2
 tar -jxvf strongswan-5.9.0.tar.bz2
 cd strongswan-5.9.0
 #configure strongswan
-./configure --prefix-/usr/ --sysconfdir=/etc --enable-counters
+./configure --prefix=/usr/ --sysconfdir=/etc --enable-counters
 #install preq for making strongswan
 apt install gcc -y
 apt install libgmp3-dev -y
