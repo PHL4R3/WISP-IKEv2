@@ -11,7 +11,11 @@ apt upgrade -y
 #get strongswan from download and unzip
 wget https://download.strongswan.org/strongswan-5.9.0.tar.bz2 
 tar -jxvf strongswan-5.9.0.tar.bz2
+while [! -f "strongswan-5.9.0"]; do
+    echo "waiting for tar to unzip"
+    sleep 1
 cd strongswan-5.9.0
+
 #configure strongswan
 ./configure --prefix=/usr/ --sysconfdir=/etc --enable-counters
 #install preq for making strongswan
