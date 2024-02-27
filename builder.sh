@@ -11,9 +11,10 @@ apt upgrade -y
 #get strongswan from download and unzip
 wget https://download.strongswan.org/strongswan-5.9.0.tar.bz2 
 tar -jxvf strongswan-5.9.0.tar.bz2
-while [! -f "strongswan-5.9.0"]; do
+while [! -d "strongswan-5.9.0"]; do
     echo "waiting for tar to unzip"
     sleep 1
+done
 cd strongswan-5.9.0
 
 #configure strongswan
@@ -23,6 +24,7 @@ apt install gcc -y
 apt install libgmp3-dev -y
 #make strongswan
 apt install make
+#put build-essentials here (Geoff)
 make
 make install
 
