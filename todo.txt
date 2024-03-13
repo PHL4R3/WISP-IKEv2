@@ -1,0 +1,9 @@
+Finish deploying strongswan script (builder.sh)
+test configuration script
+Add timing hooks to configuration script
+retest configuration script
+deploy server
+build forward data.sh
+add forward data to cronjob
+deploy server data parsing (geoff?) / setup ssh key to geoff and my device for easy file transfer/ smb share
+        -talk to forrest for a public IP
