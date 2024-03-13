@@ -21,7 +21,7 @@ cd strongswan-5.9.0
 apt install gcc -y
 apt install libgmp3-dev -y
 #configure strongswan
-./configure --prefix=/usr/ --sysconfdir=/etc --enable-counters
+./configure --prefix=/usr/ --sysconfdir=/etc --enable-counters --with-systemdsystemunitdir=/lib/systemd/system
 
 #make strongswan
 apt install make
