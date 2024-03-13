@@ -17,11 +17,12 @@ while [! -d "strongswan-5.9.0"]; do
 done
 cd strongswan-5.9.0
 
-#configure strongswan
-./configure --prefix=/usr/ --sysconfdir=/etc --enable-counters
 #install preq for making strongswan
 apt install gcc -y
 apt install libgmp3-dev -y
+#configure strongswan
+./configure --prefix=/usr/ --sysconfdir=/etc --enable-counters
+
 #make strongswan
 apt install make
 #put build-essentials here (Geoff)
