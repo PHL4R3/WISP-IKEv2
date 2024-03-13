@@ -7,7 +7,6 @@ fi
 
 #unzip and move to a better working dir
 unzip Sun-Files
-cd Sun-Files
 cd Sun
 
 #move files to required spots

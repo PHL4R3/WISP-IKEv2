@@ -7,7 +7,6 @@ fi
 
 #unzip and move to a better working dir
 unzip Moon-Files
-cd Moon-Files
 cd Moon
 
 #move files to required spots
