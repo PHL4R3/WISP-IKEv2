@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-remote_server="100.64.4.162"
+remote_server="100.64.2.194"
 ssh_key_path="/root/wisp-ikev2/id_rsa"
 directory="/root/wisp-ikev2/logging"
 

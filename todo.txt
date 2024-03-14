@@ -2,8 +2,8 @@ Finish deploying strongswan script (builder.sh)
 test configuration script
 Add timing hooks to configuration script
 retest configuration script
-deploy server
+deploy server*
 build forward data.sh
-build expirement 500 --include forward data.sh
+build expirement 500 --include forward data.sh*
 deploy server data parsing (geoff?) / setup ssh key to geoff and my device for easy file transfer/ smb share
         -talk to forrest for a public IP*
