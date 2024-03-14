@@ -17,6 +17,7 @@ cp sunCert.pem /etc/swanctl/x509/
 cp sunCACert.pem /etc/swanctl/x509ca/
 cp sunKey.pem /etc/swanctl/x509ca/
 
+#start the service
 sudo /usr/libexec/ipsec/charon
 #load creds and conns
 swanctl --load-creds
