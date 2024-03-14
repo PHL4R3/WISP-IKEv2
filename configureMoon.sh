@@ -15,6 +15,7 @@ cp moonKey.pem /etc/swanctl/private/
 cp moonCert.pem /etc/swanctl/x509/
 cp moonKey.pem /etc/swanctl/x509ca/
 
+#start the service
 sudo /usr/libexec/ipsec/charon
 #load creds and conns
 swanctl --load-creds
