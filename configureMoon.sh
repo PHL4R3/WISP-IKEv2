@@ -13,7 +13,6 @@ cd Moon
 cp swanctl.conf /etc/swanctl/
 cp moonKey.pem /etc/swanctl/private/
 cp moonCert.pem /etc/swanctl/x509/
-cp moonCACert.pem /etc/swanctl/x509ca/
 cp moonKey.pem /etc/swanctl/x509ca/
 
 sudo /usr/libexec/ipsec/charon

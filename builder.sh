@@ -25,7 +25,7 @@ apt install libgmp3-dev -y
 apt install pkg-config -y
 apt install libsystemd-dev
 #configure strongswan
-./configure --prefix=/usr --sysconfdir=/etc --enable-systemd --enable-swanctl --disable-charon --disable-stroke --disable-scepclient
+./configure --prefix=/usr --sysconfdir=/etc --enable-systemd --enable-swanctl --disable-charon --disable-stroke --disable-scepclient --enable-gcm --enable-eap-tls
 #make strongswan
 apt install make
 #put build-essentials here (Geoff)
