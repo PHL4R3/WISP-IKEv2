@@ -8,6 +8,8 @@ fi
 #update and upgrade packages
 apt update
 apt upgrade -y
+
+apt install strongswan-charon
 #get strongswan from download and unzip
 wget https://download.strongswan.org/strongswan-5.9.0.tar.bz2 
 tar -jxvf strongswan-5.9.0.tar.bz2
@@ -20,8 +22,9 @@ cd strongswan-5.9.0
 #install preq for making strongswan
 apt install gcc -y
 apt install libgmp3-dev -y
+apt install pkg-config
 #configure strongswan
-./configure --prefix=/usr --sysconfdir=/etc --disable-defaults --enable-silent-rules --enable-charon --enable-systemd --enable-ikev2 --enable-vici --enable-swanctl --enable-nonce --enable-random --enable-drbg --enable-openssl --enable-curl  --enable-pem --enable-x509 --enable-constraints --enable-revocation --enable-pki --enable-pubkey --enable-socket-default --enable-kernel-netlink --enable-resolve --enable-eap-identity --enable-eap-md5 --enable-eap-dynamic --enable-eap-tls --enable-updown --enable-tss-tss2 --enable-tpm
+./configure --prefix=/usr --sysconfdir=/etc  --enable-charon  --enable-ikev2 --enable-vici --enable-swanctl --enable-nonce --enable-random --enable-drbg --enable-openssl --enable-curl  --enable-pem --enable-x509 
 #make strongswan
 apt install make
 #put build-essentials here (Geoff)
