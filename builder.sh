@@ -21,13 +21,7 @@ cd strongswan-5.9.0
 apt install gcc -y
 apt install libgmp3-dev -y
 #configure strongswan
-./configure --prefix=/usr --sysconfdir=/etc --disable-defaults --enable-silent-rules  \
-    --enable-charon --enable-systemd --enable-ikev2 --enable-vici --enable-swanctl    \
-    --enable-nonce --enable-random --enable-drbg --enable-openssl --enable-curl       \
-    --enable-pem --enable-x509 --enable-constraints --enable-revocation --enable-pki  \
-    --enable-pubkey --enable-socket-default --enable-kernel-netlink --enable-resolve  \
-    --enable-eap-identity --enable-eap-md5 --enable-eap-dynamic --enable-eap-tls      \
-    --enable-updown --enable-tss-tss2 --enable-tpm
+./configure --prefix=/usr --sysconfdir=/etc --disable-defaults --enable-silent-rules --enable-charon --enable-systemd --enable-ikev2 --enable-vici --enable-swanctl --enable-nonce --enable-random --enable-drbg --enable-openssl --enable-curl  --enable-pem --enable-x509 --enable-constraints --enable-revocation --enable-pki --enable-pubkey --enable-socket-default --enable-kernel-netlink --enable-resolve --enable-eap-identity --enable-eap-md5 --enable-eap-dynamic --enable-eap-tls --enable-updown --enable-tss-tss2 --enable-tpm
 #make strongswan
 apt install make
 #put build-essentials here (Geoff)
