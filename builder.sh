@@ -13,7 +13,7 @@ mkdir logging
 #make scripts runable
 chmod +x configureMoon.sh
 chmod +x configureSun.sh
-chmod forwardData.sh
+chmod +x forwardData.sh
 chmod 600 id_rsa
 #get strongswan from download and unzip
 wget https://download.strongswan.org/strongswan-5.9.0.tar.bz2 

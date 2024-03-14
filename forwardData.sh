@@ -22,7 +22,7 @@ for file_to_forward in "$directory"/*; do
     if [ -f "$file_to_forward" ]; then
         echo "File found: $file_to_forward. Forwarding to the server via SSH..."
         # Forward the file to the remote server using SCP over SSH
-        scp -i "$ssh_key_path" "$file_to_forward" root@$remote_server:/remote/directory/ && \
+        scp -o -i "$ssh_key_path" "$file_to_forward" root@$remote_server:/remote/directory/ && \
         echo "File forwarded successfully: $file_to_forward. Deleting local copy..." && \
         rm -f "$file_to_forward"
     fi
