@@ -6,7 +6,7 @@ if [ $(id -u) -ne 0 ]; then
 fi
 
 #unzip and move to a better working dir
-unzip Moon-Files
+unzip Moon-Files.zip
 cd Moon
 
 #move files to required spots
@@ -16,6 +16,7 @@ cp moonCert.pem /etc/swanctl/x509/
 cp moonCACert.pem /etc/swanctl/x509ca/
 cp moonKey.pem /etc/swanctl/x509ca/
 
+sudo /usr/libexec/ipsec/charon
 #load creds and conns
 swanctl --load-creds
 swanctl --load-conns

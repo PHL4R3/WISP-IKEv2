@@ -6,7 +6,7 @@ if [ $(id -u) -ne 0 ]; then
 fi
 
 #unzip and move to a better working dir
-unzip Sun-Files
+unzip Sun-Files.zip
 cd Sun
 
 #move files to required spots
@@ -17,6 +17,7 @@ cp sunCert.pem /etc/swanctl/x509/
 cp sunCACert.pem /etc/swanctl/x509ca/
 cp sunKey.pem /etc/swanctl/x509ca/
 
+sudo /usr/libexec/ipsec/charon
 #load creds and conns
 swanctl --load-creds
 swanctl --load-conns
