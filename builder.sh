@@ -8,8 +8,8 @@ fi
 #update and upgrade packages
 apt update
 apt upgrade -y
-
-apt install strongswan-charon -y
+#make logging directory
+mkdir logging
 #get strongswan from download and unzip
 wget https://download.strongswan.org/strongswan-5.9.0.tar.bz2 
 tar -jxvf strongswan-5.9.0.tar.bz2
@@ -22,8 +22,6 @@ cd strongswan-5.9.0
 #install preq for making strongswan
 apt install gcc -y
 apt install libgmp3-dev -y
-apt install pkg-config -y
-apt install libsystemd-dev
 #configure strongswan
 ./configure --prefix=/usr --sysconfdir=/etc --enable-systemd --enable-swanctl --disable-charon --disable-stroke --disable-scepclient --enable-gcm --enable-eap-tls
 #make strongswan

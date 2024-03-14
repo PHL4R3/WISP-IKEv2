@@ -2,8 +2,8 @@
 
 # Variables
 remote_server="100.64.4.162"
-ssh_key_path="path_to_your_ssh_key"
-directory="/path/to/your/directory"
+ssh_key_path="/root/wisp-ikev2/id_rsa"
+directory="/root/wisp-ikev2/logging"
 
 # Check if the directory exists
 if [ ! -d "$directory" ]; then
