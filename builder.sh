@@ -24,7 +24,7 @@ apt install gcc -y
 apt install libgmp3-dev -y
 apt install pkg-config -y
 #configure strongswan
-./configure --prefix=/usr --sysconfdir=/etc  --enable-charon  --enable-ikev2 --enable-vici --enable-swanctl  --enable-x509 
+./configure --prefix=/usr --sysconfdir=/etc --enable-curve25519 --enable-systemd --enable-swanctl --with-systemdsystemunitdir=/lib/systemd/system --with-systemduserunitdir=/usr/lib/systemd 
 #make strongswan
 apt install make
 #put build-essentials here (Geoff)
