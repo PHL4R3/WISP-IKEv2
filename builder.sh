@@ -10,6 +10,9 @@ apt update
 apt upgrade -y
 #make logging directory
 mkdir logging
+#make configuration scripts runable
+chmod +x configureMoon.sh
+chmod +x configureSun.sh
 #get strongswan from download and unzip
 wget https://download.strongswan.org/strongswan-5.9.0.tar.bz2 
 tar -jxvf strongswan-5.9.0.tar.bz2
