@@ -5,9 +5,7 @@ if [ $(id -u) -ne 0 ]; then
   echo "This script requires root privileges. Please run with sudo."
   exit 1
 fi
-#update and upgrade packages
-apt update
-apt upgrade -y
+
 #make logging directory
 mkdir logging
 #make scripts runable
@@ -30,7 +28,7 @@ apt install libgmp3-dev -y
 apt install pkg-config -y
 apt install libsystemd-dev
 #configure strongswan
-./configure --prefix=/usr --sysconfdir=/etc --enable-acert --enable-counters --enable-files --enable-swanctl--enable-systemd --disable-charon --disable-stroke --disable-scepclient --with-systemdsystemunitdir=/lib/systemd/system --with-systemduserdir=/lib/systemd/system
+./configure --prefix=/usr --sysconfdir=/etc --enable-curve25519 --enable-systemd --enable-swanctl --with-systemdsystemunitdir=/lib/systemd/system --enable-acert --enable-counters --enable-files --disable-charon --disable-stroke --disable-scepclient
 #make strongswan
 apt install make
 #put build-essentials here (Geoff)
