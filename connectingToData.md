@@ -7,3 +7,5 @@
 --step three, once you are part of the tail network, navigate to the remote share, on windows press win + \\100.117.212.72
 
 --step four, if prompted for a password, the username is root and the password is root. Guest access should also be okay
+
+--step five, map the network drive so you never have to do this again.
