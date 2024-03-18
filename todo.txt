@@ -1,4 +1,6 @@
 *build startup script
+        -continue startup script to change network adapters
+        -look into openstack api calls to autobuild from termninal
 Finish deploying strongswan script (builder.sh)
 test configuration script
 Add timing hooks to configuration script
@@ -6,5 +8,6 @@ retest configuration script
 deploy server*
 build forward data.sh
 build expirement 500 --include forward data.sh*
-deploy server data parsing (geoff?) / setup ssh key to geoff and my device for easy file transfer/ smb share
+deploy server data parsing (geoff?) / setup ssh key to geoff and my device for easy file transfer/ smb share 
         -talk to forrest for a public IP*
+                -use openstack jumpbox with rclone or sshfs
