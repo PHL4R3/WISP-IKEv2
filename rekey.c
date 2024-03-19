@@ -122,7 +122,7 @@ static int rekey(vici_conn_t *conn)
 			ret = 1;
 		}
 	}
-	logfile.fclose()
+
 	vici_free_res(res);
 	return ret;
 }
