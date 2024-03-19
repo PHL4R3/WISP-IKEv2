@@ -88,13 +88,13 @@ static int rekey(vici_conn_t *conn)
 	res = vici_submit(req, conn);
     clock_t end = clock();
     double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
-	printf('started clock \n')
+	printf('started clock \n');
 	char stringTime[50];
 	sprintf(stringTime,"%.9f",time_spent);
-	printf('stopped clock \n')
+	printf('stopped clock \n');
     FILE *logfile;
     logfile = fopen("/root/wisp-ikev2/logging/log.txt", "a+");
-	printf('stashing changes \n')
+	printf('stashing changes \n');
 	if (!res)
 	{
 		ret = errno;
