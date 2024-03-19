@@ -14,7 +14,7 @@ cp swanctl.conf /etc/swanctl/
 cp moonKey.pem /etc/swanctl/private/
 cp moonCert.pem /etc/swanctl/x509/
 cp sunCACert.pem /etc/swanctl/x509ca/
-cp moonkey.pem /etc/swanctl/x509ca/
+cp moonKey.pem /etc/swanctl/x509ca/
 
 #load creds and conns
 systemctl enable strongswan
