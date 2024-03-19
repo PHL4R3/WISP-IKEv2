@@ -17,6 +17,7 @@
 #include "command.h"
 #include <time.h>
 #include <stdio.h>
+#include <string.h>
 #include <errno.h>
 
 static int rekey(vici_conn_t *conn)
@@ -84,23 +85,22 @@ static int rekey(vici_conn_t *conn)
 	{
 		vici_add_key_valuef(req, "reauth", "yes");
 	}
-	printf('started clock\n');
     clock_t begin = clock();
 	res = vici_submit(req, conn);
     clock_t end = clock();
     double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
-		printf('stopped clock\n');
-	char stringTime[50];
-	sprintf(stringTime,"%.9f",time_spent);
 
     FILE *logfile;
-    logfile = fopen("/root/wisp-ikev2/logging/log.txt", "a+");
-	printf('stashing changes\n');
-	if (!res)
+    logfile = fopen("/root/wisp-ikev2/logging/log.txt", "a");
+	char buffer[100];
+	char stringFail[] = "Fail,";
+	char stringPass[] = "Pass,";
+		if (!res)
 	{
 		ret = errno;
 		fprintf(stderr, "rekey request failed: %s\n", strerror(errno));
-		fprintf(logfile, strcat("\n fail,",stringTime));
+		snprintf(buffer, sizeof(buffer),"%s %f\n",stringFail,time_spent);
+		
 		return ret;
 	}
 	if (format & COMMAND_FORMAT_RAW)
@@ -113,17 +113,18 @@ static int rekey(vici_conn_t *conn)
 		if (streq(vici_find_str(res, "no", "success"), "yes"))
 		{
 			printf("rekey completed successfully\n");
-			fprintf(logfile, strcat("\n pass,",stringTime));
+			snprintf(buffer, sizeof(buffer),"%s %f\n",stringPass,time_spent);
 		}
 		else
 		{
 			fprintf(stderr, "rekey failed: %s\n",
 					vici_find_str(res, "", "errmsg"));
-			fprintf(logfile, strcat("\n fail,",stringTime));
+			snprintf(buffer, sizeof(buffer),"%s %f\n",stringFail,time_spent);
 			ret = 1;
 		}
 	}
-
+	fputs(buffer,logfile);
+	fclose(logfile)
 	vici_free_res(res);
 	return ret;
 }
