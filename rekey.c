@@ -124,7 +124,7 @@ static int rekey(vici_conn_t *conn)
 		}
 	}
 	fputs(buffer,logfile);
-	fclose(logfile)
+	fclose(logfile);
 	vici_free_res(res);
 	return ret;
 }
