@@ -1,11 +1,6 @@
 #!/bin/bash
-#reset the counters in the host-host
-count = 0
-while count<500 do
-    swanctl --counters --name host-host --reset
-    #logic here to make sure the tranmission is successful
-    #swanctl --terminate --child host-host #try this after rekey
+
+# Loop 500 times
+for ((i=1; i<=500; i++)); do
     swanctl --rekey --ike host-host --reauth
-    swanctl --counters --name host-host --all >>/root/wisp-ikev2/logging/logging.txt
-    count++
 done
