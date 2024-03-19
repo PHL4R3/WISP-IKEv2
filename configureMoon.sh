@@ -6,7 +6,7 @@ if [ $(id -u) -ne 0 ]; then
 fi
 
 #unzip and move to a better working dir
-unzip Moon-Files.zip
+unzip Moon.zip
 cd Moon
 
 #move files to required spots

@@ -6,7 +6,7 @@ if [ $(id -u) -ne 0 ]; then
 fi
 
 #unzip and move to a better working dir
-unzip Sun-Files.zip
+unzip Sun.zip
 cd Sun
 
 #move files to required spots
