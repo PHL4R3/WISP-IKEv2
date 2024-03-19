@@ -89,7 +89,7 @@ static int rekey(vici_conn_t *conn)
     clock_t end = clock();
     double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
 	char stringTime[50];
-	sprintf(stringTime,"%d",time_spent);
+	sprintf(stringTime,"%f",time_spent);
     FILE *logfile;
     logfile = fopen("/root/wisp-ikev2/logging/log.txt", "a+");
 	if (!res)
