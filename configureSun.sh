@@ -12,10 +12,8 @@ cd Sun
 #move files to required spots
 cp swanctl.conf /etc/swanctl/
 cp sunKey.pem /etc/swanctl/private/
-cp sunReq.pem /etc/swanctl/private/
 cp sunCert.pem /etc/swanctl/x509/
-cp sunCACert.pem /etc/swanctl/x509ca/
-cp sunKey.pem /etc/swanctl/x509ca/
+cp wispCACert.pem /etc/swanctl/x509ca/
 
 #load creds and conns
 systemctl enable strongswan
