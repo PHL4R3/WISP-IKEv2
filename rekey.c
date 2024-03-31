@@ -91,7 +91,7 @@ static int rekey(vici_conn_t *conn)
     double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
 
     FILE *logfile;
-    logfile = fopen("/root/wisp-ikev2/logging/log.txt", "a");
+    logfile = fopen("/root/wisp-ikev2/logging/logpq.txt", "a");
 	char buffer[100];
 	char stringFail[] = "Fail,";
 	char stringPass[] = "Pass,";

@@ -8,14 +8,14 @@ fi
 
 #make logging directory
 mkdir logging
-touch logging/log.txt
+touch logging/logpq.txt
 #make scripts runable
 chmod +x configureMoon.sh
 chmod +x configureSun.sh
 chmod +x forwardData.sh
 chmod 600 id_rsa
 #get strongswan from download and unzip
-wget https://download.strongswan.org/strongswan-5.9.0.tar.bz2 
+wget https://download.strongswan.org/strongswan-5.9.14.tar.bz2 
 tar -jxvf strongswan-5.9.0.tar.bz2
 while [! -d "strongswan-5.9.0"]; do
     echo "waiting for tar to unzip"
@@ -29,9 +29,11 @@ cd strongswan-5.9.0
 apt install gcc -y
 apt install libgmp3-dev -y
 apt install pkg-config -y
-apt install libsystemd-dev
+apt install libsystemd-dev -y
+apt install libcrypto -y
+apt install libssl-dev -y
 #configure strongswan
-./configure --prefix=/usr --sysconfdir=/etc --enable-systemd --enable-swanctl --with-systemdsystemunitdir=/lib/systemd/system --enable-counters --enable-files --disable-charon --disable-stroke --disable-scepclient
+./configure --enable-cmd --enable-conftest --enable-counters --enable-openssl --enable-systemd --with-systemdsystemunitdir=/lib/systemd/system --enable-acert --enable-files --enable-swanctl --disable-charon --disable-stroke --disable-scepclient
 #make strongswan
 apt install make
 #put build-essentials here (Geoff)
