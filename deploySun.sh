@@ -3,7 +3,7 @@
 apt update
 apt upgrade -y
 cd /root
-git clone https://github.com/phl4r3/wisp-ikev2
+git clone https://github.com/phl4r3/wisp-ikev2/tree/PQ-Testing
 cd wisp-ikev2
 chmod +x ./builder.sh
 ./builder.sh
