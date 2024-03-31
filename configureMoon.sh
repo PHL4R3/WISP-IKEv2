@@ -13,7 +13,7 @@ cd Moon
 cp swanctl.conf /etc/swanctl/
 cp moonKey.pem /etc/swanctl/private/
 cp moonCert.pem /etc/swanctl/x509/
-cp strongswanCert.pem /etc/swanctl/x509ca/
+cp caCert.pem /etc/swanctl/x509ca/
 cp strongswan.conf /etc/
 
 

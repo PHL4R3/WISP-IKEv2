@@ -13,7 +13,7 @@ cd Sun
 cp swanctl.conf /etc/swanctl/
 cp sunKey.pem /etc/swanctl/private/
 cp sunCert.pem /etc/swanctl/x509/
-cp strongswanCert.pem /etc/swanctl/x509ca/
+cp caCert.pem /etc/swanctl/x509ca/
 cp strongswan.conf /etc/
 
 #load creds and conns
