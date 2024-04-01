@@ -18,16 +18,16 @@ apt install libcrypto -y
 apt install libssl-dev -y
 apt install iproute2 iputils-ping nano wget unzip bzip2 make gcc libssl-dev cmake ninja-build -y
 #install liboqs
-mkdir /liboqs && \
-  cd /liboqs && \
-  wget https://github.com/open-quantum-safe/liboqs/archive/refs/tags/0.9.2.zip && \
-  unzip 0.9.2.zip && \
-  cd liboqs-0.9.2 && \
-  mkdir build && cd build && \
-  cmake -GNinja -DOQS_USE_OPENSSL=ON -DBUILD_SHARED_LIBS=ON -DCMAKE_INSTALL_PREFIX=/usr \
-                -DCMAKE_BUILD_TYPE=Release -DOQS_BUILD_ONLY_LIB=ON .. && \
-  ninja && ninja install && \
-  cd / && rm -R /liboqs && \
+mkdir /liboqs 
+cd /liboqs 
+wget https://github.com/open-quantum-safe/liboqs/archive/refs/tags/0.9.2.zip 
+unzip 0.9.2.zip 
+cd liboqs-0.9.2 
+mkdir build && cd build 
+cmake -GNinja -DOQS_USE_OPENSSL=ON -DBUILD_SHARED_LIBS=ON -DCMAKE_INSTALL_PREFIX=/usr \
+                -DCMAKE_BUILD_TYPE=Release -DOQS_BUILD_ONLY_LIB=ON .. 
+ninja && ninja install 
+cd / && rm -R /liboqs 
 #make scripts runable
 chmod +x configureMoon.sh
 chmod +x configureSun.sh
