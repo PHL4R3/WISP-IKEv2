@@ -27,6 +27,8 @@ cmake -GNinja -DOQS_USE_OPENSSL=ON -DBUILD_SHARED_LIBS=ON -DCMAKE_INSTALL_PREFIX
                 -DCMAKE_BUILD_TYPE=Release -DOQS_BUILD_ONLY_LIB=ON .. 
 ninja && ninja install 
 cd / && rm -R /liboqs 
+#cd back to working space
+cd /root/wisp-ikev2/
 #make scripts runable
 chmod +x configureMoon.sh
 chmod +x configureSun.sh
@@ -39,8 +41,9 @@ while [! -d "strongswan-6.0.0beta6"]; do
     echo "waiting for tar to unzip"
     sleep 1
 done
+
 rm strongswan-6.0.0beta6/src/swanctl/commands/rekey.c
-cp rekey.c /root/wisp-ikev2/strongswan-6.0.0beta6/src/swanctl/commands/
+cp rekey.c strongswan-6.0.0beta6/src/swanctl/commands/
 cd strongswan-6.0.0beta6
 
 
