@@ -9,6 +9,14 @@ fi
 #make logging directory
 mkdir logging
 touch logging/logpq.txt
+#install preq for making strongswan and liboqs
+apt install gcc -y
+apt install libgmp3-dev -y
+apt install pkg-config -y
+apt install libsystemd-dev -y
+apt install libcrypto -y
+apt install libssl-dev -y
+apt install iproute2 iputils-ping nano wget unzip bzip2 make gcc libssl-dev cmake ninja-build -y
 #install liboqs
 mkdir /liboqs && \
   cd /liboqs && \
@@ -36,13 +44,7 @@ rm strongswan-6.0.0beta6/src/swanctl/commands/rekey.c
 cp rekey.c /root/wisp-ikev2/strongswan-6.0.0beta6/src/swanctl/commands/
 cd strongswan-6.0.0beta6
 
-#install preq for making strongswan
-apt install gcc -y
-apt install libgmp3-dev -y
-apt install pkg-config -y
-apt install libsystemd-dev -y
-apt install libcrypto -y
-apt install libssl-dev -y
+
 #configure strongswan
 ./configure --enable-cmd --enable-conftest --enable-counters --enable-openssl --enable-systemd --with-systemdsystemunitdir=/lib/systemd/system --enable-acert --enable-files --enable-swanctl --disable-charon --disable-stroke --disable-scepclient --disable-ikev1 --enable-frodo --enable-oqs --enable-silent-rules --sysconfdir=/etc
 #make strongswan
