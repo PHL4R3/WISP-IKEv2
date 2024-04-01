@@ -14,7 +14,6 @@ apt install gcc -y
 apt install libgmp3-dev -y
 apt install pkg-config -y
 apt install libsystemd-dev -y
-apt install libcrypto -y
 apt install libssl-dev -y
 apt install iproute2 iputils-ping nano wget unzip bzip2 make gcc libssl-dev cmake ninja-build -y
 #install liboqs
