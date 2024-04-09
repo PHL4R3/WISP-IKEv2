@@ -9,7 +9,9 @@ fi
 #make logging directory
 mkdir logging
 touch logging/logpq.txt
-#install preq for making strongswan and liboqs
+#install preq for making strongswan and liboqs and packet dropper
+apt install pip -y
+pip install scapy
 apt install gcc -y
 apt install libgmp3-dev -y
 apt install pkg-config -y
