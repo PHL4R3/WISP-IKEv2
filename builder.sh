@@ -41,9 +41,11 @@ unzip reliable-transport-ikev2-plugin-main.zip
 
 rm reliable-transport-ikev2-plugin-main/src/swanctl/commands/rekey.c
 cp rekey.c reliable-transport-ikev2-plugin-main/src/swanctl/commands/
+chmod -R 777 reliable-transport-ikev2-plugin-main
+
 cd reliable-transport-ikev2-plugin-main
 
-chmod +x configure
+
 #configure strongswan
 ./configure --enable-cmd --enable-conftest --enable-counters --enable-openssl --enable-systemd --with-systemdsystemunitdir=/lib/systemd/system --enable-acert --enable-files --enable-swanctl --disable-charon --disable-stroke --disable-scepclient --disable-ikev1 --enable-frodo --enable-oqs --enable-silent-rules --sysconfdir=/etc
 #make strongswan
