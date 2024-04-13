@@ -37,16 +37,11 @@ chmod +x configureSun.sh
 chmod +x forwardData.sh
 chmod 600 id_rsa
 #get strongswan from download and unzip
-wget https://download.strongswan.org/strongswan-6.0.0beta6.tar.bz2
-tar -jxvf strongswan-6.0.0beta6.tar.bz2
-while [! -d "strongswan-6.0.0beta6"]; do
-    echo "waiting for tar to unzip"
-    sleep 1
-done
+unzip reliable-transport-ikev2-plugin-main.zip
 
-rm strongswan-6.0.0beta6/src/swanctl/commands/rekey.c
-cp rekey.c strongswan-6.0.0beta6/src/swanctl/commands/
-cd strongswan-6.0.0beta6
+rm reliable-transport-ikev2-plugin-main/src/swanctl/commands/rekey.c
+cp rekey.c reliable-transport-ikev2-plugin-main/src/swanctl/commands/
+cd reliable-transport-ikev2-plugin-main
 
 
 #configure strongswan
