@@ -37,9 +37,8 @@ chmod +x configureSun.sh
 chmod +x forwardData.sh
 chmod 600 id_rsa
 #get strongswan from git
-mkdir strongswan
-cd strongswan
 git clone -b RFC-9329---TCP https://github.com/wpj3799/StrongSwan-PQ
+cd StrongSwan-PQ
 rm /src/swanctl/commands/rekey.c
 cp rekey.c /src/swanctl/commands/
 
