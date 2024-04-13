@@ -3,7 +3,7 @@
 apt update
 apt upgrade -y
 cd /root
-git clone git clone -b PQ-Testing https://github.com/phl4r3/wisp-ikev2
+git clone -b tcp_decouple https://github.com/PHL4R3/WISP-IKEv2/tree/tcp_decouple
 cd wisp-ikev2
 chmod +x ./builder.sh
 ./builder.sh
