@@ -18,6 +18,7 @@ apt install pkg-config -y
 apt install libsystemd-dev -y
 apt install libssl-dev -y
 apt install iproute2 iputils-ping nano wget unzip bzip2 make gcc libssl-dev cmake ninja-build -y
+apt install autoconf -y
 #install liboqs
 mkdir /liboqs 
 cd /liboqs 
@@ -30,7 +31,7 @@ cmake -GNinja -DOQS_USE_OPENSSL=ON -DBUILD_SHARED_LIBS=ON -DCMAKE_INSTALL_PREFIX
 ninja && ninja install 
 cd / && rm -R /liboqs 
 #cd back to working space
-cd /root/wisp-ikev2/
+cd /root/WISP-IKEv2/
 #make scripts runable
 chmod +x configureMoon.sh
 chmod +x configureSun.sh
