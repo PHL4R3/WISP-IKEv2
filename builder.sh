@@ -39,7 +39,7 @@ chmod 600 id_rsa
 #get strongswan from git
 mkdir strongswan
 cd strongswan
-git clone https://github.com/wpj3799/StrongSwan-PQ/tree/RFC-9329---TCP
+git clone -b RFC-9329---TCP https://github.com/wpj3799/StrongSwan-PQ
 rm /src/swanctl/commands/rekey.c
 cp rekey.c /src/swanctl/commands/
 
