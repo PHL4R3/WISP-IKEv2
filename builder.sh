@@ -8,7 +8,9 @@ fi
 
 #make logging directory
 mkdir logging
-touch logging/log.txt
+touch logging/rekey.txt
+touch logging/init.txt
+touch logging/term.txt
 #make scripts runable
 chmod +x configureMoon.sh
 chmod +x configureSun.sh
@@ -21,8 +23,16 @@ while [! -d "strongswan-5.9.0"]; do
     echo "waiting for tar to unzip"
     sleep 1
 done
+#add in the timing hook scripts
 rm strongswan-5.9.0/src/swanctl/commands/rekey.c
 cp rekey.c /root/wisp-ikev2/strongswan-5.9.0/src/swanctl/commands/
+rm strongswan-5.9.0/src/swanctl/commands/terminate.c
+cp terminate.c /root/wisp-ikev2/strongswan-5.9.0/src/swanctl/commands/
+rm strongswan-5.9.0/src/swanctl/commands/initiate.c
+cp initiate.c /root/wisp-ikev2/strongswan-5.9.0/src/swanctl/commands/
+
+
+
 cd strongswan-5.9.0
 
 #install preq for making strongswan
