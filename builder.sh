@@ -48,6 +48,12 @@ done
 
 rm strongswan-6.0.0beta6/src/swanctl/commands/rekey.c
 cp rekey.c strongswan-6.0.0beta6/src/swanctl/commands/
+
+rm strongswan-6.0.0beta6/src/swanctl/commands/terminate.c
+cp terminate.c strongswan-6.0.0beta6/src/swanctl/commands/
+
+rm strongswan-6.0.0beta6/src/swanctl/commands/initiate.c
+cp initiate.c strongswan-6.0.0beta6/src/swanctl/commands/
 cd strongswan-6.0.0beta6
 
 
