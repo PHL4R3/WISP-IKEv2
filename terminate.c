@@ -153,6 +153,8 @@ static int terminate(vici_conn_t *conn)
 			ret = 1;
 		}
 	}
+	fputs(buffer,logfile);
+	fclose(logfile);
 	vici_free_res(res);
 	return ret;
 }
