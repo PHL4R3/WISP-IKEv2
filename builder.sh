@@ -8,7 +8,9 @@ fi
 
 #make logging directory
 mkdir logging
-touch logging/logpq.txt
+touch logging/term.txt
+touch logging/init.txt
+touch logging/rekey.txt
 #install preq for making strongswan and liboqs and packet dropper
 apt install pip -y
 pip install scapy

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017-2018 Tobias Brunner
+ * Copyright (C) 2014 Martin Willi
  *
  * Copyright (C) secunet Security Networks AG
  *
@@ -20,14 +20,29 @@
 #include <string.h>
 #include <errno.h>
 
-static int rekey(vici_conn_t *conn)
+CALLBACK(log_cb, void,
+	command_format_options_t *format, char *name, vici_res_t *msg)
+{
+	if (*format & COMMAND_FORMAT_RAW)
+	{
+		vici_dump(msg, "log", *format & COMMAND_FORMAT_PRETTY, stdout);
+	}
+	else
+	{
+		printf("[%s] %s\n",
+			   vici_find_str(msg, "   ", "group"),
+			   vici_find_str(msg, "", "msg"));
+	}
+}
+
+static int terminate(vici_conn_t *conn)
 {
 	vici_req_t *req;
 	vici_res_t *res;
 	command_format_options_t format = COMMAND_FORMAT_NONE;
 	char *arg, *child = NULL, *ike = NULL;
-	int ret = 0, child_id = 0, ike_id = 0;
-	bool reauth = FALSE;
+	int ret = 0, timeout = 0, level = 1, child_id = 0, ike_id = 0;
+	bool force = FALSE;
 
 	while (TRUE)
 	{
@@ -44,6 +59,9 @@ static int rekey(vici_conn_t *conn)
 			case 'c':
 				child = arg;
 				continue;
+			case 'f':
+				force = TRUE;
+				continue;
 			case 'i':
 				ike = arg;
 				continue;
@@ -53,18 +71,27 @@ static int rekey(vici_conn_t *conn)
 			case 'I':
 				ike_id = atoi(arg);
 				continue;
-			case 'a':
-				reauth = TRUE;
+			case 't':
+				timeout = atoi(arg);
+				continue;
+			case 'l':
+				level = atoi(arg);
 				continue;
 			case EOF:
 				break;
 			default:
-				return command_usage("invalid --rekey option");
+				return command_usage("invalid --terminate option");
 		}
 		break;
 	}
 
-	req = vici_begin("rekey");
+	if (vici_register(conn, "control-log", log_cb, &format) != 0)
+	{
+		ret = errno;
+		fprintf(stderr, "registering for log failed: %s\n", strerror(errno));
+		return ret;
+	}
+	req = vici_begin("terminate");
 	if (child)
 	{
 		vici_add_key_valuef(req, "child", "%s", child);
@@ -81,49 +108,51 @@ static int rekey(vici_conn_t *conn)
 	{
 		vici_add_key_valuef(req, "ike-id", "%d", ike_id);
 	}
-	if (reauth)
+	if (force)
 	{
-		vici_add_key_valuef(req, "reauth", "yes");
+		vici_add_key_valuef(req, "force", "yes");
 	}
-    clock_t begin = clock();
+	if (timeout)
+	{
+		vici_add_key_valuef(req, "timeout", "%d", timeout * 1000);
+	}
+	vici_add_key_valuef(req, "loglevel", "%d", level);
+	clock_t begin = clock();
 	res = vici_submit(req, conn);
-    clock_t end = clock();
+	clock_t end = clock();
     double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
 
-    FILE *logfile;
-    logfile = fopen("/root/wisp-ikev2/logging/logpq.txt", "a");
+	FILE *logfile;
+    logfile = fopen("/root/wisp-ikev2/logging/term.txt", "a");
 	char buffer[100];
 	char stringFail[] = "Fail,";
 	char stringPass[] = "Pass,";
-		if (!res)
+	if (!res)
 	{
 		ret = errno;
-		fprintf(stderr, "rekey request failed: %s\n", strerror(errno));
-		
+		fprintf(stderr, "terminate request failed: %s\n", strerror(errno));
 		return ret;
 	}
 	if (format & COMMAND_FORMAT_RAW)
 	{
-		vici_dump(res, "rekey reply", format & COMMAND_FORMAT_PRETTY,
+		vici_dump(res, "terminate reply", format & COMMAND_FORMAT_PRETTY,
 				  stdout);
 	}
 	else
 	{
 		if (streq(vici_find_str(res, "no", "success"), "yes"))
 		{
-			printf("rekey completed successfully\n");
+			printf("terminate completed successfully\n");
 			snprintf(buffer, sizeof(buffer),"%s %f\n",stringPass,time_spent);
 		}
 		else
 		{
-			fprintf(stderr, "rekey failed: %s\n",
+			fprintf(stderr, "terminate failed: %s\n",
 					vici_find_str(res, "", "errmsg"));
 			snprintf(buffer, sizeof(buffer),"%s %f\n",stringFail,time_spent);
 			ret = 1;
 		}
 	}
-	fputs(buffer,logfile);
-	fclose(logfile);
 	vici_free_res(res);
 	return ret;
 }
@@ -134,18 +163,20 @@ static int rekey(vici_conn_t *conn)
 static void __attribute__ ((constructor))reg()
 {
 	command_register((command_t) {
-		rekey, 'R', "rekey", "rekey an SA",
+		terminate, 't', "terminate", "terminate a connection",
 		{"--child <name> | --ike <name> | --child-id <id> | --ike-id <id>",
-		 "[--reauth] [--raw|--pretty]"},
+		 "[--timeout <s>] [--raw|--pretty]"},
 		{
 			{"help",		'h', 0, "show usage information"},
-			{"child",		'c', 1, "rekey by CHILD_SA name"},
-			{"ike",			'i', 1, "rekey by IKE_SA name"},
-			{"child-id",	'C', 1, "rekey by CHILD_SA unique identifier"},
-			{"ike-id",		'I', 1, "rekey by IKE_SA unique identifier"},
-			{"reauth",		'a', 0, "reauthenticate instead of rekey an IKEv2 SA"},
+			{"child",		'c', 1, "terminate by CHILD_SA name"},
+			{"ike",			'i', 1, "terminate by IKE_SA name"},
+			{"child-id",	'C', 1, "terminate by CHILD_SA unique identifier"},
+			{"ike-id",		'I', 1, "terminate by IKE_SA unique identifier"},
+			{"force",		'f', 0, "terminate IKE_SA without waiting, unless timeout is set"},
+			{"timeout",		't', 1, "timeout in seconds before detaching"},
 			{"raw",			'r', 0, "dump raw response message"},
 			{"pretty",		'P', 0, "dump raw response message in pretty print"},
+			{"loglevel",	'l', 1, "verbosity of redirected log"},
 		}
 	});
 }
