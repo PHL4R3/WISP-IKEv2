@@ -127,7 +127,7 @@ static int initiate(vici_conn_t *conn)
 		{
 			fprintf(stderr, "initiate failed: %s\n",
 					vici_find_str(res, "", "errmsg"));
-			snprintf(buffer, sizeof(buffer),"%s %f\n",stringFail,time_spent)
+			snprintf(buffer, sizeof(buffer),"%s %f\n",stringFail,time_spent);
 			ret = 1;
 		}
 	}
